@@ -7,31 +7,51 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { images } from './helper/utils/images/index';
+import { icons } from './utils/icons/index';
 function Header() {
 	const [openSideBar, setOpenSideBar] = useState(false);
 	const router = useRouter();
 	return (
-		<header className='sticky top-0 z-50'>
-			<div className='flex items-center bg-amazon_blue p-1 flex-grow py-2'>
-				<div className='mt-2 flex items-center flex-grow sm:flex-grow-0  px-4'>
+		// <div className='bg-amazon_blue  w-full flex-grow py-2'>
+		// 		<Image
+		// 			onClick={() => router.push('/')}
+		// 			src={images.logo}
+		// 			width={40}
+		// 			height={40}
+		// 			objectFit='cover'
+		// 			className=' cursor-pointer rounded-3xl '
+		// 		/>
+		// 		<div className='flex items-center text-xs text-white space-x-6 mx-6 whitespace-nowrap'>
+		// 			<div className='cursor-pointer link'>
+		// 				<p className='hover:underline'>Hello, Khaled !</p>
+		// 				<p className='font-extrabold md:text-sm'>Account & Lists</p>
+		// 			</div>
+
+		// 			<div className=' flex items-center flex-grow sm:flex-grow-0 '>
+		// 				<Image
+		// 					onClick={() => router.push('/')}
+		// 					src={images.user}
+		// 					width={40}
+		// 					height={100}
+		// 					objectFit='contain'
+		// 					className='cursor-pointer rounded-3xl'
+		// 				/>
+		// 			</div>
+		// 		</div>
+		// 	</div>
+		<header className='sticky top-0 z-50 '>
+			<div className='flex justify-between items-center space-x-3 p-2 pl-6 h-16 bg-amazon_blue-light text-white text-sm'>
+				<p className='link flex items-center cursor-pointer'>
+					<MenuIcon className='h-6 mr-1' onClick={() => setOpenSideBar(true)} />
 					<Image
 						onClick={() => router.push('/')}
-						src={images.logo}
-						width={60}
-						height={100}
+						src={icons.logo_maison_fondant}
+						width={40}
+						height={40}
 						objectFit='cover'
-						className='cursor-pointer rounded-3xl'
+						className=' cursor-pointer rounded-3xl '
 					/>
-				</div>
-				<div className='hidden sm:flex items-center h-10 rounded-md bg-yellow-400 hover:bg-yellow-500 flex-grow cursor-pointer '>
-					<input
-						className='p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4'
-						type='text '
-					/>
-					<SearchIcon className='h-12 p-4' />
-				</div>
-
-				{/* Right */}
+				</p>
 				<div className='flex items-center text-xs text-white space-x-6 mx-6 whitespace-nowrap'>
 					<div className='cursor-pointer link'>
 						<p className='hover:underline'>Hello, Khaled !</p>
@@ -49,41 +69,26 @@ function Header() {
 						/>
 					</div>
 				</div>
+				{/* <p className='link cursor-pointer'>Prime Video</p>
+				<p className='link cursor-pointer'>Amazon Business</p>
+				<p className='link cursor-pointer'>Today's Deals</p>
+				<p className='link hidden lg:inline-flex cursor-pointer px-6'>
+					Electronics
+				</p>
+				<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
+					Food & Grocery
+				</p>
+				<p className='link hidden lg:inline-flex cursor-pointer px-6 '>Prime</p>
+				<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
+					Buy Again
+				</p>
+				<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
+					Shopper Toolkit
+				</p>
+				<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
+					Health & Personal Care
+				</p> */}
 			</div>
-			{/* Bottom */}
-			{!openSideBar ? (
-				<div className='flex items-center space-x-3 p-2 pl-6 bg-amazon_blue-light text-white text-sm'>
-					<p className='link flex items-center cursor-pointer'>
-						<MenuIcon
-							className='h-6 mr-1'
-							onClick={() => setOpenSideBar(true)}
-						/>
-						All
-					</p>
-					<p className='link cursor-pointer'>Prime Video</p>
-					<p className='link cursor-pointer'>Amazon Business</p>
-					<p className='link cursor-pointer'>Today's Deals</p>
-					<p className='link hidden lg:inline-flex cursor-pointer px-6'>
-						Electronics
-					</p>
-					<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
-						Food & Grocery
-					</p>
-					<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
-						Prime
-					</p>
-					<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
-						Buy Again
-					</p>
-					<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
-						Shopper Toolkit
-					</p>
-					<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
-						Health & Personal Care
-					</p>
-				</div>
-			) : null}
-
 			<div
 				id='drawer-navigation'
 				class={`fixed z-40 h-screen  overflow-y-auto bg-white  ${
