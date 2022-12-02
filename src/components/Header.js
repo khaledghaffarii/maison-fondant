@@ -8,145 +8,108 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { images } from './helper/utils/images/index';
 import { icons } from './utils/icons/index';
+import Link from 'next/link';
 function Header() {
 	const [openSideBar, setOpenSideBar] = useState(false);
 	const router = useRouter();
 	return (
-		// <div className='bg-amazon_blue  w-full flex-grow py-2'>
-		// 		<Image
-		// 			onClick={() => router.push('/')}
-		// 			src={images.logo}
-		// 			width={40}
-		// 			height={40}
-		// 			objectFit='cover'
-		// 			className=' cursor-pointer rounded-3xl '
-		// 		/>
-		// 		<div className='flex items-center text-xs text-white space-x-6 mx-6 whitespace-nowrap'>
-		// 			<div className='cursor-pointer link'>
-		// 				<p className='hover:underline'>Hello, Khaled !</p>
-		// 				<p className='font-extrabold md:text-sm'>Account & Lists</p>
-		// 			</div>
-
-		// 			<div className=' flex items-center flex-grow sm:flex-grow-0 '>
-		// 				<Image
-		// 					onClick={() => router.push('/')}
-		// 					src={images.user}
-		// 					width={40}
-		// 					height={100}
-		// 					objectFit='contain'
-		// 					className='cursor-pointer rounded-3xl'
-		// 				/>
-		// 			</div>
-		// 		</div>
-		// 	</div>
 		<header className='sticky top-0 z-50 '>
-			<div className='flex justify-between items-center space-x-3 p-2 pl-6 h-16 bg-amazon_blue-light text-white text-sm'>
-				<p className='link flex items-center cursor-pointer'>
-					<MenuIcon className='h-6 mr-1' onClick={() => setOpenSideBar(true)} />
-					<Image
-						onClick={() => router.push('/')}
-						src={icons.logo_maison_fondant}
-						width={40}
-						height={40}
-						objectFit='cover'
-						className=' cursor-pointer rounded-3xl '
-					/>
-				</p>
-				<div className='flex items-center text-xs text-white space-x-6 mx-6 whitespace-nowrap'>
-					<div className='cursor-pointer link'>
-						<p className='hover:underline'>Hello, Khaled !</p>
-						<p className='font-extrabold md:text-sm'>Account & Lists</p>
-					</div>
-
-					<div className=' flex items-center flex-grow sm:flex-grow-0 '>
-						<Image
-							onClick={() => router.push('/')}
-							src={images.user}
-							width={40}
-							height={100}
-							objectFit='contain'
-							className='cursor-pointer rounded-3xl'
-						/>
-					</div>
+			<div className='flex justify-between items-center space-x-3 p-2 pl-6 h-16 w-full  bg-yellow-100 border border-red-900 text-white text-sm'>
+				<div className='link flex items-center cursor-pointer'>
+					{openSideBar ? (
+						<button
+							onClick={() => setOpenSideBar(false)}
+							type='button'
+							data-drawer-dismiss='drawer-navigation'
+							aria-controls='drawer-navigation'
+							class='  p-2 border-gray-300 text-black border'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								viewBox='0 0 24 24'
+								fill='currentColor'
+								className='w-6 h-6'>
+								<path
+									fillRule='evenodd'
+									d='M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z'
+									clipRule='evenodd'
+								/>
+							</svg>
+						</button>
+					) : (
+						<div  className='p-2 border-gray-300  text-black border'>
+						<MenuIcon
+							className='h-6 '
+							color='#352014'
+							onClick={() => setOpenSideBar(true)}
+						/>	</div>
+					)}
 				</div>
-				{/* <p className='link cursor-pointer'>Prime Video</p>
-				<p className='link cursor-pointer'>Amazon Business</p>
-				<p className='link cursor-pointer'>Today's Deals</p>
-				<p className='link hidden lg:inline-flex cursor-pointer px-6'>
-					Electronics
-				</p>
-				<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
-					Food & Grocery
-				</p>
-				<p className='link hidden lg:inline-flex cursor-pointer px-6 '>Prime</p>
-				<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
-					Buy Again
-				</p>
-				<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
-					Shopper Toolkit
-				</p>
-				<p className='link hidden lg:inline-flex cursor-pointer px-6 '>
-					Health & Personal Care
-				</p> */}
+				<div className='' style={{}}>
+					{icons.logo_maison_fondant}
+				</div>
+		
+					<div className='flex flex-row'>
+							{icons.userProfile}
+					<text className='  text-gray-900 px-2'>Profil</text>
+					<svg
+									class=' flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-700 dark:group-hover:text-white'
+									fill='currentColor'
+									viewBox='0 0 20 20'
+									xmlns='http://www.w3.org/2000/svg'>
+									<path
+										fill-rule='evenodd'
+										d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
+										clip-rule='evenodd'></path>
+								</svg>
+					</div>
 			</div>
 			<div
 				id='drawer-navigation'
 				class={`fixed z-40 h-screen  overflow-y-auto bg-white  ${
 					openSideBar ? 'w-80 ' : 'w-0 '
-				} dark:bg-gray-800 `}
+				} dark:bg-yellow-100  border border-r-1 border-t-0 border-red-900`}
 				tabindex='-1'
 				aria-labelledby='drawer-navigation-label'>
-				<h5
-					id='drawer-navigation-label'
-					class='text-base font-semibold text-gray-500 uppercase dark:text-gray-400'>
-					Menu
-				</h5>
-				<button
-					onClick={() => setOpenSideBar(false)}
-					type='button'
-					data-drawer-dismiss='drawer-navigation'
-					aria-controls='drawer-navigation'
-					class='text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white'>
-					<svg
-						aria-hidden='true'
-						class='w-5 h-5'
-						fill='currentColor'
-						viewBox='0 0 20 20'
-						xmlns='http://www.w3.org/2000/svg'>
-						<path
-							fill-rule='evenodd'
-							d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z'
-							clip-rule='evenodd'></path>
-					</svg>
-					<span class='sr-only'>Close menu</span>
-				</button>
+					<div className='mb-12 border-b border-gray-100 pb-8'>
+					<div className=' items-center w-full pl-28 pt-12 mb-5'>
+						<Image
+							onClick={() => router.push('/')}
+							src={images.user}
+							width={70}
+							height={70}
+							objectFit='contain'
+							className='cursor-pointer rounded-full'
+						/>
+					
+					</div>
+					<text className=' text-center pl-24 text-gray-900'>khaled ghaffari</text></div>
 				<div class='py-4 overflow-y-auto'>
 					<ul class='space-y-2'>
 						<li>
 							<a
 								href='#'
-								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'>
+								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-yellow-300 '>
 								<svg
 									aria-hidden='true'
-									class='w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
+									class='w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-700 group-hover:text-gray-900 dark:group-hover:text-white'
 									fill='currentColor'
 									viewBox='0 0 20 20'
 									xmlns='http://www.w3.org/2000/svg'>
 									<path d='M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z'></path>
 									<path d='M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z'></path>
 								</svg>
-								<span class='ml-3'>Dashboard</span>
+								<span class='ml-3 text-gray-900'>Dashboard</span>
 							</a>
 						</li>
 						<li>
 							<button
 								type='button'
-								class='flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'
+								class='flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group  dark:text-white dark:hover:bg-yellow-300 '
 								aria-controls='dropdown-example'
 								data-collapse-toggle='dropdown-example'>
 								<svg
 									aria-hidden='true'
-									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white'
+									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-700 dark:group-hover:text-white'
 									fill='currentColor'
 									viewBox='0 0 20 20'
 									xmlns='http://www.w3.org/2000/svg'>
@@ -155,11 +118,11 @@ function Header() {
 										d='M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z'
 										clip-rule='evenodd'></path>
 								</svg>
-								<span class='flex-1 ml-3 text-left whitespace-nowrap'>
+								<span class='flex-1 ml-3 text-gray-900 text-left whitespace-nowrap'>
 									E-commerce
 								</span>
 								<svg
-									class='w-6 h-6'
+									class='w-6 h-6 flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-700 dark:group-hover:text-white'
 									fill='currentColor'
 									viewBox='0 0 20 20'
 									xmlns='http://www.w3.org/2000/svg'>
@@ -173,21 +136,21 @@ function Header() {
 								<li>
 									<a
 										href='#'
-										class='flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'>
+										class='flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-yellow-300 '>
 										Products
 									</a>
 								</li>
 								<li>
 									<a
 										href='#'
-										class='flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'>
+										class='flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-yellow-300 '>
 										Billing
 									</a>
 								</li>
 								<li>
 									<a
 										href='#'
-										class='flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'>
+										class='flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-yellow-300 '>
 										Invoice
 									</a>
 								</li>
@@ -196,17 +159,17 @@ function Header() {
 						<li>
 							<a
 								href='#'
-								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'>
+								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-yellow-300 '>
 								<svg
 									aria-hidden='true'
-									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
+									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-700 group-hover:text-gray-900 dark:group-hover:text-white'
 									fill='currentColor'
 									viewBox='0 0 20 20'
 									xmlns='http://www.w3.org/2000/svg'>
 									<path d='M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z'></path>
 								</svg>
-								<span class='flex-1 ml-3 whitespace-nowrap'>Kanban</span>
-								<span class='inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300'>
+								<span class='flex-1 ml-3 text-gray-900 whitespace-nowrap'>Kanban</span>
+								<span class='inline-flex items-center justify-center px-2 ml-3 text-gray-900 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300'>
 									Pro
 								</span>
 							</a>
@@ -214,18 +177,18 @@ function Header() {
 						<li>
 							<a
 								href='#'
-								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'>
+								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-yellow-300 '>
 								<svg
 									aria-hidden='true'
-									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
+									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-700 group-hover:text-gray-900 dark:group-hover:text-white'
 									fill='currentColor'
 									viewBox='0 0 20 20'
 									xmlns='http://www.w3.org/2000/svg'>
 									<path d='M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z'></path>
 									<path d='M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z'></path>
 								</svg>
-								<span class='flex-1 ml-3 whitespace-nowrap'>Inbox</span>
-								<span class='inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200'>
+								<span class='flex-1 ml-3 text-gray-900 whitespace-nowrap'>Inbox</span>
+								<span class='inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-gray-900 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200'>
 									3
 								</span>
 							</a>
@@ -233,10 +196,10 @@ function Header() {
 						<li>
 							<a
 								href='#'
-								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'>
+								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-yellow-300 '>
 								<svg
 									aria-hidden='true'
-									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
+									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-700 group-hover:text-gray-900 dark:group-hover:text-white'
 									fill='currentColor'
 									viewBox='0 0 20 20'
 									xmlns='http://www.w3.org/2000/svg'>
@@ -245,16 +208,16 @@ function Header() {
 										d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
 										clip-rule='evenodd'></path>
 								</svg>
-								<span class='flex-1 ml-3 whitespace-nowrap'>Users</span>
+								<span class='flex-1 ml-3 text-gray-900 whitespace-nowrap'>Users</span>
 							</a>
 						</li>
 						<li>
 							<a
 								href='#'
-								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'>
+								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-yellow-300 '>
 								<svg
 									aria-hidden='true'
-									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
+									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-700 group-hover:text-gray-900 dark:group-hover:text-white'
 									fill='currentColor'
 									viewBox='0 0 20 20'
 									xmlns='http://www.w3.org/2000/svg'>
@@ -263,16 +226,17 @@ function Header() {
 										d='M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z'
 										clip-rule='evenodd'></path>
 								</svg>
-								<span class='flex-1 ml-3 whitespace-nowrap'>Products</span>
+								<span class='flex-1 ml-3 text-gray-900 whitespace-nowrap'>Products</span>
 							</a>
 						</li>
 						<li>
-							<a
-								href='#'
-								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'>
+							<Link
+							onClick={() => router.push('/login')}
+								href='/login'
+								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-yellow-300 '>
 								<svg
 									aria-hidden='true'
-									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
+									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-700 group-hover:text-gray-900 dark:group-hover:text-white'
 									fill='currentColor'
 									viewBox='0 0 20 20'
 									xmlns='http://www.w3.org/2000/svg'>
@@ -281,27 +245,10 @@ function Header() {
 										d='M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z'
 										clip-rule='evenodd'></path>
 								</svg>
-								<span class='flex-1 ml-3 whitespace-nowrap'>Sign In</span>
-							</a>
+								<span class='flex-1 ml-3 text-gray-900 whitespace-nowrap'>Sign out</span>
+							</Link>
 						</li>
-						<li>
-							<a
-								href='#'
-								class='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'>
-								<svg
-									aria-hidden='true'
-									class='flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
-									fill='currentColor'
-									viewBox='0 0 20 20'
-									xmlns='http://www.w3.org/2000/svg'>
-									<path
-										fill-rule='evenodd'
-										d='M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z'
-										clip-rule='evenodd'></path>
-								</svg>
-								<span class='flex-1 ml-3 whitespace-nowrap'>Sign Up</span>
-							</a>
-						</li>
+						
 					</ul>
 				</div>
 			</div>
